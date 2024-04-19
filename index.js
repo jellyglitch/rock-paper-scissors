@@ -12,42 +12,46 @@ let playerScore = 0;
 let computerScore = 0;
 
 function playRound(playerSelection, computerSelection) {
-    let player = playerSelection.toLowerCase();
-    let result;
+    //let player = playerSelection.toLowerCase();
+    let result = document.querySelector('#results');
+    let resultP = document.createElement('p');
 
-    if(player == 'rock' && computerSelection == 'scissor'){
-        result = 'You win! Rock beats scissor.';
+    if(playerSelection == 'rock' && computerSelection == 'scissor'){
+        resultP.textContent = 'You win! Rock beats scissor.';
         playerScore += 1;
-    } else if (player == 'paper' && computerSelection == 'rock') {
-        result = 'You win! Paper beats rock.';
+    } else if (playerSelection == 'paper' && computerSelection == 'rock') {
+        resultP.textContent = 'You win! Paper beats rock.';
         playerScore += 1;
-    } else if (player == 'scissor' && computerSelection == 'paper') {
-        result = 'You win! Scissor beats paper.';
+    } else if (playerSelection == 'scissor' && computerSelection == 'paper') {
+        resultP.textContent = 'You win! Scissor beats paper.';
         playerScore += 1;
-    } else if (player == 'rock' && computerSelection == 'paper') {
-        result = 'You lose! Paper beats rock.';
+    } else if (playerSelection == 'rock' && computerSelection == 'paper') {
+        resultP.textContent = 'You lose! Paper beats rock.';
         computerScore += 1;
-    } else if (player == 'paper' && computerSelection == 'scissor') {
-        result = 'You lose! Scissor beats paper.';
+    } else if (playerSelection == 'paper' && computerSelection == 'scissor') {
+        resultP.textContent = 'You lose! Scissor beats paper.';
         computerScore += 1;
-    } else if (player == 'scissor' && computerSelection == 'rock') {
-        result = 'You lose! Rock beats scissor.';
+    } else if (playerSelection == 'scissor' && computerSelection == 'rock') {
+        resultP.textContent = 'You lose! Rock beats scissor.';
         computerScore += 1;
     } else {
-        result = 'Tie! You both picked ' + player;
+        resultP.textContent = 'Tie! You both picked ' + playerSelection;
     }
-    
-    console.log(result);
+
+    result.appendChild(resultP);
 }
   
 function playGame() {
+    let playerSelection = document.querySelector('#selection');
 
-    for(let round = 1; round <= 5; round++){
-        playRound(prompt("What is you choice? (rock, paper, scissor)"), 
-            getComputerChoice());
-
+    playerSelection.addEventListener('click', (event) => {
+        let selection = event.target;
+        playRound(selection.id, getComputerChoice())
         console.log('Player score: '+playerScore+' Computer score: '+computerScore);
-    }
+    });
+
+    
+    
 }
-  
+
 console.log(playGame());
