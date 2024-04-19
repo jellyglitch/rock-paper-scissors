@@ -40,11 +40,12 @@ function playRound(playerSelection, computerSelection) {
   
 function playGame() {
     let playerSelection = document.querySelector('#selection');
-
+    let score = document.querySelector('#score');
 
     playerSelection.addEventListener('click', (event) => {
         let selection = event.target;
         playRound(selection.id, getComputerChoice())
+        score.textContent = 'Player score: '+playerScore+' Computer score: '+computerScore;
         //console.log('Player score: '+playerScore+' Computer score: '+computerScore);
     });
 
