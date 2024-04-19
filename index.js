@@ -12,9 +12,10 @@ let playerScore = 0;
 let computerScore = 0;
 
 function playRound(playerSelection, computerSelection) {
-    //let player = playerSelection.toLowerCase();
     let result = document.querySelector('#results');
     let resultP = document.createElement('p');
+    
+    if(result.hasChildNodes()) {result.removeChild(result.firstChild)};
 
     if(playerSelection == 'rock' && computerSelection == 'scissor'){
         resultP.textContent = 'You win! Rock beats scissor.';
